@@ -11,44 +11,71 @@ async function getPokeInfo() {
     console.log(pokeData);
     // This is essentially a user/computer's hand
     let userPokemon = [];
+    let userHand = [];
     let computerPokemon = [];
+    let computerHand = [];
+    // shuffle the pokemon using sort() method
+    pokeData.results.sort(() => Math.random() - 0.5);
     // Each entry has a .name and a .url property. This url allows you to grab the moves etc of the individual pokemon
     for (let i=0; i<5; i++){
         userPokemon.push(await getPMonStats(pokeData.results[i].url));
+        userHand = addToHand(userPokemon[i], userHand);
+    }
+    // don't need all of the information returned by API. Just need name, HP, attacks & image
+    for (entry of userHand) {
+        console.table(entry);
     }
     // shuffle the pokemon using sort() method
     pokeData.results.sort(() => Math.random() - 0.5);
     for (let i=0; i<5; i++){
         computerPokemon.push(await getPMonStats(pokeData.results[i].url));
+        computerHand = addToHand(computerPokemon[i], computerHand);
     }
     // This shows the above described info for the first pokemon
-    console.log(userPokemon[0]);
-    console.log(computerPokemon[0]);
-    // Trying to access the move & its url
-    for (character of userPokemon) {
-        console.log(character.sprites.front_default);
-        console.log(character.moves[0].move);
-        console.log(`First userPokemon has health of ${character.stats[0].base_stat}`);
+    for (entry of computerHand) {
+        console.table(entry);
     }
-    for (character of computerPokemon) {
-        console.log(character.sprites.front_default);
-        console.log(character.moves[0].move);
-        console.log(`First computerPokemon has health of ${character.stats[0].base_stat}`);
-    }
-    // Get what the move does using its api url
-    // let moves = [];
-    // moves.push(await getPMonStats(pokemon[0].moves[0].move.url));
-    // console.log(moves[0].damage_class.url);
-    // console.log(await getPMonStats(moves[0].damage_class.url));
-    // console.log(moves[0].damage_class.url);
+    displayHands(userHand, computerHand);
 }
 
 async function getPMonStats(theUrl) {
     var statsResponse = await fetch(theUrl);
-    console.log(statsResponse);
+    // console.log(statsResponse);
     var theStats = await statsResponse.json();
     console.log(theStats);
     return theStats;
+}
+ /**
+  * Function to add excessively bulky data entries' key properties to user hand 
+  * @param {*}  
+  * @param {*} 
+  * @returns 
+  */
+function addToHand(dataEntry, hand) {
+    let attacks = [];
+    for (let j=0; j<3; j++) {
+        attacks.push(dataEntry.moves[j].move.name);
+    }
+    hand.push({"name":dataEntry.name,
+        "xp":dataEntry.base_experience,
+        "attacks":attacks,
+        "image":dataEntry.sprites.front_default});
+    return hand;
+}
+
+function displayHands(userHand, computerHand){
+    for (let i=0; i<userHand.length; i++){
+        document.getElementsByClassName('userHand')[i].innerHTML = `User Card ${i+1}:
+            ${userHand[i].name}
+            XP: ${userHand[i].xp}
+            attacks: ${userHand[i].attacks[0]}, ${userHand[i].attacks[1]}, ${userHand[i].attacks[2]},
+            <img src=${userHand[i].image}>`;
+        document.getElementsByClassName('computerHand')[i].innerHTML = `Computer Card ${i+1}:
+            ${computerHand[i].name}
+            XP: ${computerHand[i].xp}
+            attacks: ${computerHand[i].attacks[0]}, ${computerHand[i].attacks[1]}, ${computerHand[i].attacks[2]},
+            <img src=${computerHand[i].image}>`;
+    }
 }
 
 getPokeInfo();
