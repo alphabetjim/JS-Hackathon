@@ -12,8 +12,106 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers">
 </head>
 <body>
-    <p><strong>This should be in bold</strong></p>
-    Hello! This should display in the Bangers font.
+    
+<div class="container-fluid">  
+
+    <div class="row" id="hero-div">
+        <div class="col-12 hero-div">
+            <!-- <div class="col-0"></div> -->
+            <!-- <img id="hero-image" src="assets/images/Pokemon-Clash-Hero.png"> -->
+        </div>
+
+    </div>
+
+        <div class="row" id="users-div">
+            <div class="col-6" id="userType-player"><span class="card-labels">Player</span></div>
+            <div class="col-6" id="userType-computer"><span class="card-labels">Computer</span></div>
+        </div>
+
+        <div class="row" id="cardCount-div">
+            <div class="col-6" id="playerCC">
+                <span class="card-labels">Player Card Number:</span>
+            </div>
+            <div class="col-6" id="computerCC">
+                <span class="card-labels">Computer card Count:</span>
+            </div>
+        </div>
+                <!--Player card goes here -->
+        <div class="row" id="cards-div">
+            <div class="col-sm-4 offset-md-1 card-align" id="player-pokey">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>                      
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">An item</li>
+                      <li class="list-group-item">A second item</li>
+                      <li class="list-group-item">A third item</li>
+                    </ul>
+                    <!-- spans div to hold buttons onto bottom of card for targeting and independent alignment -->
+                    
+                    <div class="combat-buttons">
+                        <span>
+                            <button type="button" class="btn btn-success">HP:                               
+                            </button>
+                        </span> 
+
+                        <span>
+                            <button type="button" class="btn btn-danger">Attack!
+                            </button>
+                        </span>
+
+                    </div>
+                
+                </div>
+                
+            </div>
+            
+            <div class="col-2"></div>
+            <!-- <div class="col-2"></div> -->
+
+                <!-- Computer card goes here -->
+            <div class="col-sm-4  card-align" id="computer-pokey">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>                    
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">An item</li>
+                      <li class="list-group-item">A second item</li>
+                      <li class="list-group-item">A third item</li>
+                    </ul>
+
+                    <div class="combat-buttons">
+                        <span>
+                            <button type="button" class="btn btn-success">HP:
+                             </button>
+                        </span> 
+
+                        <span>
+                            <button type="button" class="btn btn-danger">Attack!
+                            </button>
+                        </span>
+
+                    </div>
+                
+                </div>
+            
+            
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-8 offset-md-2" id="monologue-box">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet vitae corporis fugiat labore veniam omnis. Earum recusandae dolor et ratione velit commodi, tenetur dolorem sint architecto </div>
+        <div class="col-8 offset-md-2" id="status-box">debitis, sunt sed dolorum!</div>
+    </div>
+
+</div> 
     <!-- Project JS -->
     <script src="assets/js/script.js"></script>
     <!-- Bootstrap JS -->
