@@ -1,5 +1,5 @@
 ---
-name: 'User Story: [User Story Title]'
+name: User Story
 about: "[User Story Description]"
 title: ''
 labels: ''
